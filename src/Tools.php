@@ -1111,7 +1111,9 @@ class Tools extends ToolsCommon
         }
         $ignore = $tpEvento == self::EVT_EPEC;
         $servico = 'RecepcaoEvento';
-        $this->checkContingencyForWebServices($servico);
+        if (!$ignore) {
+            $this->checkContingencyForWebServices($servico);
+        }
         $this->servico($servico, $uf, $this->tpAmb, $ignore);
         $ev = $this->tpEv($tpEvento);
         $descEvento = $ev->desc;
